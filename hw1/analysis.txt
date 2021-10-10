@@ -1,0 +1,41 @@
+time complexities of algorithms
+
+    alg 1
+        O(n^2)
+    alg2
+        O(n)
+    alg3
+        O(n)
+    alg4
+        O(n)
+
+manual explanation of maximum subsequence algorithms
+
+    maxSubSum1
+        for every potential start value in the sequence
+            for every potential end value in the sequence
+                compute the sum between the given start and end
+                check if this is the greatest recorded sum so far
+
+    maxSubSum2
+        for every potential start value in the sequence
+            check intermediately if this value is the greatest recorded sum
+            add the next value in the sequence and recheck
+
+    maxSubSum3
+        **for this algorithm I did not completely understand the way it worked**
+        partitions the array into pieces in order to find the maximum sum
+        uses comparissons to efficiently eliminate pieces of the sequence
+            which would not benefit the maxSum
+        then it combines the pieces back together to compute the maxSum
+
+    maxSubSum4
+        running through the sequence only once...
+            add the next value in the sequence to the intermediate sum
+            check intermediately if this value is the greatest recorded sum
+            check intermediately if this value is negative
+                if it is then restart this pattern with the
+                next value in the sequence being the new start of the sequence
+
+                because the only time you would need to check different
+                start values is when the sum becomes negative
