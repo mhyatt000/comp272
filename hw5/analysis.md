@@ -6,8 +6,8 @@
 2. What is the time-complexities of buildHeap(), addHeap(), and removeHeap()
 
 - buildHeap()
-    O(n log(n))
+    * O(n log(n))
 - addHeap()
-    O(log(n))
+    * O(log(n))
 - removeHeap()
-    O(log(n))
+    * O(log(n))
