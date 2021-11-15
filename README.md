@@ -1,3 +1,5 @@
-#COMP 272
+# COMP 272
 
-assignments submissions of data structures
+Matt Hyatt
+
+Submissions for `Data Structures II`
