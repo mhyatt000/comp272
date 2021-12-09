@@ -1,7 +1,7 @@
 public class Edge {
 
-   int u;
-   int v;
+   public int u;
+   public int v;
 
    public Edge (int i, int j) {
 

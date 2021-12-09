@@ -2,8 +2,8 @@ import java.util.*;
 
 public class DirectedNodeList{
 
-    ArrayList<Integer> inList;
-    ArrayList<Integer> outList;
+    public ArrayList<Integer> inList;
+    public ArrayList<Integer> outList;
 
 
     public DirectedNodeList() {
