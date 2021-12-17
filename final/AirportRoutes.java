@@ -6,21 +6,14 @@ public class AirportRoutes {
     ArrayList<Edge> routes;
     ArrayList<String> airports;
     int numAirports;
-    int[] map;
-    // add something for DAG
+    HashMap<String,Integer> map;
 
     public AirportRoutes (){
 
         routes = new ArrayList<>();
         airports = new ArrayList<>();
         numAirports = 0;
-        map = new int[numAirports];
-
-    }
-
-    public void buildHubs(int appropriate_parameter){
-    // parameter might be the directedGraph you built for the routes
-    // this method builds the reducedGraph, I call it the Hubs.
+        map = new HashMap<>();
 
     }
 
@@ -47,15 +40,17 @@ public class AirportRoutes {
         System.out.println("Number of airports: " + airports.size());
         numAirports = airports.size();
 
-        generateMap();
+        for(int i=0; i<numAirports; i++)
+            map.put(airports.get(i), i);
+        // generateMap();
 
         try {
             fileScanner = new Scanner (new File (routesFile));
             while (fileScanner.hasNext()) {
                 String word = fileScanner.nextLine();
                 String[] temp = word.split(" ");
-                int u = map[encode(temp[0])];
-                int v = map[encode(temp[1])];
+                int u = map.get(temp[0]);
+                int v = map.get(temp[1]);
                 routes.add( new Edge(u,v) );
             }
         }
@@ -82,7 +77,7 @@ public class AirportRoutes {
 
         int connections = 0;
         int num = 0;
-        int p = dg.sccMap[map[encode(port)]];
+        int p = dg.sccMap[map.get(port)];
 
         for(int i=0; i<reduced.dGraph.size(); i++){
             DirectedNodeList scc = reduced.dGraph.get(i);
@@ -116,54 +111,6 @@ public class AirportRoutes {
         int num = dg.num;
 
         return dg.num;
-    }
-
-    public int encode(String str){
-        // use ascii to encode strings with NO collisions
-        // size 729,000 ... could be much smaller ... 17,576 but "-" and "7"
-        char[] letters = str.toCharArray();
-        int a = letters[0];
-        int b = letters[1];
-        int c = letters[2];
-        int out = a*8100+b*90+c;
-
-        return out;
-    }
-
-    public String decode(int in){
-        //
-        // currently cannot decode
-        //
-        String c = Character.toString(in%90);
-        String b = Character.toString((in/90)%90);
-        String a = Character.toString(in/8100);
-
-        System.out.println(c);
-        String out = a+b+c;
-
-        return out;
-    }
-
-    // public String d2(int in){
-    //     // takes an int airport and returns the name of the airport
-    //     return map[in];
-    // }
-
-    public void generateMap(){
-
-        map = new int[737191];
-        for(int i=0; i<map.length; i++){
-            map[i] = -1;
-        }
-
-        int i = 0;
-        for(String port: airports){
-            map[encode(port)] = i;
-            i++;
-        }
-
-
-
     }
 
     public static void main(String[] args) {
